@@ -1,0 +1,42 @@
+{% extends "layout.html" %}
+{% block body %}
+    <div class="container1">
+        {% if current_user.is_authenticated %}
+        <div class="card">
+            <form method="post" enctype="multipart/form-data" action="/">
+                <div class="drop_box">
+                    <header>
+                        <h4>Select File here</h4>
+                    </header>
+                    <p>Files Supported: JPG, JPEG, PNG, BMP, GIF, WEBP</p>
+                    <input type="file" accept=".jpg, .jpeg, .png, .bmp, .gif, .webp" id="image_path" class="btn1"
+                        name="image_path">
+                </div>
+                <div class="drop_box">
+                    <header>
+                        <h4>Select Document Type</h4>
+                    </header>
+                    <p>Choose the type of document you want to upload:</p>
+
+                    <div class="select" tabindex="1">
+                        <input class="selectopt" name="document_type" type="radio" id="opt1" value="invoice" checked>
+                        <label for="opt1" class="option">Invoice</label>
+                        <input class="selectopt" name="document_type" type="radio" id="opt2" value="prescription">
+                        <label for="opt2" class="option">Prescription</label>
+                        <input class="selectopt" name="document_type" type="radio" id="opt3" value="labreport">
+                        <label for="opt3" class="option">Lab Report</label>
+                    </div>
+                </div>
+                <br>
+                <input type="submit" value="Submit" class="subbtn">
+            </form>
+        </div>
+        {% else %}
+        <p>Please log in to access image upload functionality.</p>
+        <a href="{{ url_for('login') }}">Login</a>
+        {% endif %}
+    </div>
+
+</body>
+{% endblock %}
+</html>
